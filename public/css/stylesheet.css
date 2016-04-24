@@ -3,16 +3,11 @@
 }
 
 body {
-	background: #DEDCDC;
+	background: #F0F0F0;
 }
 
 p {
 	color: #3D3D3D;
-}
-
-input:focus {
-	border: 0;
- 	outline: none; 
 }
 
 #header {
@@ -30,29 +25,42 @@ input:focus {
 .row {
     position: fixed;
     top: 5px;
-    left: 50px;
-    width: 60%;
+    left: 100px;
+    width: 80%;
     z-index: 11
+}
+.col-lg-6 {
+	width:100% !important;
 }
 
 .btn {
-	padding:0px;
 	border-radius: 6px;
 }
 
+.btn:focus,.btn:active {
+   outline: none !important;
+}
+
 #logo {
-	height:30px;
+	height:20px;	
+}
+
+.form-control {
+	background-color: #F0F0F0;
+	width: 80% !important;
 }
 
 .form-control:focus {
-	outline: 0px; 
-	box-shadow: none;
+    border-color: #cccccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 .btn:focus {
 	outline: 0px; 
 	box-shadow: none;
 }
+
 
 #content {
 	margin: 0 auto;
@@ -74,13 +82,8 @@ input:focus {
 
 
 .pin {
-	/*float: left;*/
 	width: 236px;
-	/*height: 100%;*/
-	/*border: 2px solid hsla(0, 0%, 0%, 0.5);*/
 	margin-bottom: 15px;
-
-
 	background: #FEFEFE;
 	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
 	border-radius: 6px;
@@ -107,7 +110,7 @@ input:focus {
 	line-break: strict;
 	overflow:hidden;
 	max-width: 220px;
-	padding: 3px 8px 3px 8px;
+	padding: 3px 8px 0px 8px;
 
 }
 
@@ -129,7 +132,7 @@ input:focus {
 
 .pinStats img {
 	width: 17px;
-	margin-bottom: 4px
+	padding-bottom: 11px
 }
 .pinStats p {
 	color: lightgrey;
@@ -151,6 +154,15 @@ input:focus {
 	border-top: 1px solid #DEDCDC;
 	height: 50px;
 	padding-top: 8px;
+	margin-bottom: 8px;
+}
+
+.userPic {
+	display:inline-block;
+	float:left;
+	width: 50px;
+	height: 30px;
+
 }
 
 .userPic img{
@@ -173,5 +185,13 @@ input:focus {
 
 .board {
 	height: 20px;
+
+}
+
+.board p {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 70%;
 }
 
