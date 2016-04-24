@@ -10,17 +10,18 @@ from flask import Flask, Response, request
 
 pin_return_num = 25
 
+# Looks for occurance of each word in split_words
+# TODO - extend so that we first show pins that match all words, then those that match some
 def limit_to_search_text(pin_list, search_txt):
-    print "---limit to search text---"
     return_list = []
     split_words = search_txt.split()
     for pin in pin_list:
+        occurances = 0
         for word in split_words:
             if word.lower() in pin['description'].lower():
                 occurances += 1
         if occurances == len(split_words):
             return_list.append(pin)
-
     return return_list
 
 # TODO - Hook this up so that you can pass in pin_list and value_name and get back only pins that match range
@@ -31,7 +32,6 @@ def limit_to_value(pin_list, value_name, min_value, max_value):
             print "we have a match!"
 
 def create_temp_array(file_name):
-    print "---create_temp_array---"
     try:
         with open(file_name, 'r') as db_file_readable:
             try:
@@ -45,39 +45,26 @@ def create_temp_array(file_name):
         print "no file found, initializing new file with []"
 
 def args_handler(search_txt):
-    print "---args_handler---"
     start_index = int(request.args.get('next_index').replace('undefined', '0'))
     return search_txt, request.args.get('action'), start_index
 
 def modify_source(source_pins, search_txt, start_index):
-    print "---modify_source---"
     # If there's a search term, limit scope of pins to only those that match
     if len(search_txt)>0:
         source_pins = limit_to_search_text(source_pins, search_txt)
-
-    # Roll source pins around axis
-    print "roll source pins by" + str(start_index * -1)
     source_pins = np.roll(source_pins, (start_index * -1))
     return source_pins
     
 def clear_pins():
-    print "---clear_pins---"
     return [], 0    
 
 def get_next_index(start_index, pin_return_num, source_pins):
-    print "---get_next_index---"
     if len(source_pins) > 0:
-        print "source pins has " + str(len(source_pins))
         return start_index + (pin_return_num%len(source_pins))
     else:
         return 0
 
 def get_new_pins(pins_to_return, source_pins, pin_return_num):
-    print "get_new_pins"
-    print "pins_to_return starts with " + str(len(pins_to_return)) + ' items'
-    # Get 25 pins, either running through source_pins once if >=2   5 items
-    # or running through multiple times if <25 items
-    # import ipdb; ipdb.set_trace()
     pin_count = 0
     if len(source_pins) < 1:
         return []
@@ -96,11 +83,9 @@ def get_new_pins(pins_to_return, source_pins, pin_return_num):
             pins_to_return.append(temp_pins[i])
             pin_count+=1
 
-    print "pins_to_return now has " + str(len(pins_to_return)) + "elements"
     return pins_to_return
 
 def append_new_attributes(pins_to_return):
-    print "---append_new_attributes---"
     for index in range(len(pins_to_return)):
         pin = pins_to_return[index]
         pin['layout_id'] = index
@@ -108,12 +93,10 @@ def append_new_attributes(pins_to_return):
     return pins_to_return
 
 def write_to_db(file, pins_to_return):
-    print "---write_to_db---"
     with open(file, 'w+') as db_file_writable:
         db_file_writable.write(json.dumps(pins_to_return, indent=4, separators=(',', ': ')))
 
 def construct_api_response(next_index, pins_to_return):
-    print "---construct_api_response---"
     return {'meta': next_index, 'data':pins_to_return}
 
 
@@ -126,7 +109,6 @@ app.config['DEBUG'] = True
 
 def pins_handler(search_text):
 
-    # import ipdb; ipdb.setTrace();
     api_search_text, clearAll, start_index = args_handler(search_text)
     pins_to_return = create_temp_array('pin_db.json')
     source_pins = create_temp_array('source_pins_static.json')

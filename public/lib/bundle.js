@@ -73,6 +73,7 @@
 	  loadPinsFromServer: function (action, searchTerm, next_index) {
 	    console.log('aaaand the state of next index is');
 	    console.log(next_index);
+	    this.setState({ searchTxt: searchTerm });
 	    var apiCall = this.props.urlProperty + this.assembleParams(searchTerm, action, next_index);
 	    console.log(apiCall);
 	    console.log('loading new pins!');
@@ -98,7 +99,7 @@
 
 	      if (!taskFired) {
 	        taskFired = true;
-	        this.loadPinsFromServer('noClear', '', this.state.next_index);
+	        this.loadPinsFromServer('noClear', this.state.searchTxt, this.state.next_index);
 	        setTimeout(function () {
 	          taskFired = false;
 	        }, 1500);
@@ -154,11 +155,13 @@
 	  },
 	  // Data ends up in pinWrapper loadPinsFromServer() which requests from api
 	  handleTextChange: function (e) {
+	    window.scrollTo(0, 0);
 	    this.setState({ text: e.target.value });
 	    this.props.onSearchSubmit('clear', e.target.value, 0);
 	  },
 	  // Data ends up in pinWrapper loadPinsFromServer() which requests from api
 	  handleClick: function () {
+	    window.scrollTo(0, 0);
 	    this.setState({ text: '' });
 	    this.props.onSearchSubmit('clear', '', 0);
 	  },
