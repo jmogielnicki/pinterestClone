@@ -171,9 +171,10 @@
 	      this.setState({ btnText: '' });
 	    } else {
 	      this.setState({ btnImgPath: '/images/face.png' });
-	      this.setState({ btnText: ' Built by John Mogielnicki' });
+	      this.setState({ btnText: '  Built by John Mogielnicki' });
 	    }
 	  },
+	  // Renders all header control components
 	  render: function () {
 	    return React.createElement(
 	      'div',

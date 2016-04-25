@@ -25,8 +25,8 @@ p {
 .row {
     position: fixed;
     top: 5px;
-    left: 100px;
-    width: 80%;
+    left: 5%;
+    width: 90%;
     z-index: 11
 }
 .col-lg-6 {
@@ -41,6 +41,8 @@ p {
 .btn:focus,.btn:active {
    outline: none !important;
    color: #828282;
+   background-color: #FAFAFA;
+   border-color: #D1D1D1;
 }
 
 .btn-default{
@@ -58,7 +60,7 @@ p {
 
 .form-control {
 	background-color: #F0F0F0;
-	width: 70% !important;
+	width: 80% !important;
 }
 
 .form-control:focus {

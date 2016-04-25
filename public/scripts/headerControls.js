@@ -1,6 +1,5 @@
 var React = require('react');
 
-
 var HeaderControls = React.createClass({
   getInitialState: function() {
     return {
@@ -27,10 +26,11 @@ var HeaderControls = React.createClass({
       this.setState({btnText: ''})
     } else {
       this.setState({btnImgPath: '/images/face.png'})
-      this.setState({btnText: ' Built by John Mogielnicki'})
+      this.setState({btnText: '  Built by John Mogielnicki'})
     }
     
   },
+  // Renders all header control components
   render: function() {
     return (
     <div className="row">

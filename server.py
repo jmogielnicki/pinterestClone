@@ -24,13 +24,6 @@ def limit_to_search_text(pin_list, search_txt):
             return_list.append(pin)
     return return_list
 
-# TODO - Hook this up so that you can pass in pin_list and value_name and get back only pins that match range
-def limit_to_value(pin_list, value_name, min_value, max_value):
-    return_list = []
-    for pin in pin_list:
-        if min_value <= pin[value_name] <= max_value:
-            print "we have a match!"
-
 def create_temp_array(file_name):
     try:
         with open(file_name, 'r') as db_file_readable:
@@ -104,7 +97,8 @@ def construct_api_response(next_index, pins_to_return):
 
 app = Flask(__name__, static_url_path='', static_folder='public')
 app.add_url_rule('/', 'root', lambda: app.send_static_file('index.html'))
-app.config['DEBUG'] = True
+# Uncomment next line to debug server
+# app.config['DEBUG'] = True
 
 @app.route('/api/pins/', defaults={'search_text': ""}, methods=['GET'])
 @app.route('/api/pins/<search_text>', methods=['GET'])
