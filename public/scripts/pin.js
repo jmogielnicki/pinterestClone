@@ -2,7 +2,6 @@ var React = require('react');
 
 var Pin = React.createClass({
   handleImageLoaded: function() {
-    console.log("Images Loading");
     $('#content').masonry({
       itemSelector: '.pin',
       gutter: 15,

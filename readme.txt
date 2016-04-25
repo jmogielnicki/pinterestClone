@@ -1,11 +1,12 @@
 Pinterest Clone by John Mogielnicki
 
+
 _______________________
 
 To Start the App:
 
 1. Navigate to root folder (/pinterestClone)
-2. Run "pip install -r requirements.txt"
+2. Run "sudo pip install -r requirements.txt"
 3. Run "npm install"
 4. Run "npm start"
 5. Go to http://127.0.0.1:3000/ on any web browser

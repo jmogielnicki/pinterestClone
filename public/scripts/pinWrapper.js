@@ -9,12 +9,8 @@ var taskFired  = false;
 var PinWrapper = React.createClass({
   // Call function to assemble url params and then send to server via ajax
   loadPinsFromServer: function(action, searchTerm, next_index) {
-    console.log('aaaand the state of next index is')
-    console.log(next_index)
     this.setState({searchTxt:searchTerm});
     var apiCall = this.props.urlProperty + this.assembleParams(searchTerm, action, next_index)
-    console.log(apiCall);
-    console.log('loading new pins!');
     $.ajax({
       url: apiCall,
       datatype: 'json',
@@ -43,9 +39,8 @@ var PinWrapper = React.createClass({
     }
   },
   // Assemble url paramaters to pass to the API
-  assembleParams: function(searchTerm, action_param = 'clear', next_index = 0) {
+  assembleParams: function(searchTerm, action_param, next_index) {
   var apiParams = '';
-  console.log('assembling url parameters')
   if (searchTerm.length>0) {apiParams = '/' + searchTerm};
   apiParams += '?action=' + action_param
   apiParams += '&next_index=' + String(next_index)
