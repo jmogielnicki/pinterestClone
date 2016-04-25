@@ -33,12 +33,23 @@ p {
 	width:100% !important;
 }
 
+
 .btn {
 	border-radius: 6px;
 }
 
 .btn:focus,.btn:active {
    outline: none !important;
+   color: #828282;
+}
+
+.btn-default{
+	font-size: 10px;
+	color: #828282;
+}
+
+#right {
+	float:left;
 }
 
 #logo {
@@ -47,7 +58,7 @@ p {
 
 .form-control {
 	background-color: #F0F0F0;
-	width: 80% !important;
+	width: 70% !important;
 }
 
 .form-control:focus {

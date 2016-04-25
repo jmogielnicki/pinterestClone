@@ -149,8 +149,8 @@
 	  getInitialState: function () {
 	    return {
 	      text: '',
-	      x: 10,
-	      y: 10
+	      btnText: '',
+	      btnImgPath: '/images/menu.png'
 	    };
 	  },
 	  // Data ends up in pinWrapper loadPinsFromServer() which requests from api
@@ -160,12 +160,20 @@
 	    this.props.onSearchSubmit('clear', e.target.value, 0);
 	  },
 	  // Data ends up in pinWrapper loadPinsFromServer() which requests from api
-	  handleClick: function () {
+	  handleLogoClick: function () {
 	    window.scrollTo(0, 0);
 	    this.setState({ text: '' });
 	    this.props.onSearchSubmit('clear', '', 0);
 	  },
-	  sliderChange: function () {},
+	  handleMenuClick: function () {
+	    if (this.state.btnImgPath == '/images/face.png') {
+	      this.setState({ btnImgPath: 'images/menu.png' });
+	      this.setState({ btnText: '' });
+	    } else {
+	      this.setState({ btnImgPath: '/images/face.png' });
+	      this.setState({ btnText: ' Built by John Mogielnicki' });
+	    }
+	  },
 	  render: function () {
 	    return React.createElement(
 	      'div',
@@ -178,13 +186,13 @@
 	          { className: 'input-group' },
 	          React.createElement(
 	            'span',
-	            { className: 'input-group-btn' },
+	            { className: 'input-group-btn', id: 'left' },
 	            React.createElement(
 	              'button',
 	              {
 	                className: 'btn btn-default',
 	                type: 'button',
-	                onClick: this.handleClick },
+	                onClick: this.handleLogoClick },
 	              React.createElement('img', { src: '/images/logo_transparent.png', id: 'logo' })
 	            )
 	          ),
@@ -192,7 +200,20 @@
 	            className: 'form-control',
 	            placeholder: 'Search',
 	            value: this.state.text,
-	            onChange: this.handleTextChange })
+	            onChange: this.handleTextChange }),
+	          React.createElement(
+	            'span',
+	            { className: 'input-group-btn', id: 'right' },
+	            React.createElement(
+	              'button',
+	              {
+	                className: 'btn btn-default',
+	                type: 'button',
+	                onClick: this.handleMenuClick },
+	              React.createElement('img', { src: this.state.btnImgPath, id: 'logo' }),
+	              this.state.btnText
+	            )
+	          )
 	        )
 	      )
 	    );

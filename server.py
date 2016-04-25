@@ -48,8 +48,8 @@ def args_handler(search_txt):
     start_index = int(request.args.get('next_index').replace('undefined', '0'))
     return search_txt, request.args.get('action'), start_index
 
+ # If there's a search term, limit scope of pins to only those that match
 def modify_source(source_pins, search_txt, start_index):
-    # If there's a search term, limit scope of pins to only those that match
     if len(search_txt)>0:
         source_pins = limit_to_search_text(source_pins, search_txt)
     source_pins = np.roll(source_pins, (start_index * -1))
@@ -64,6 +64,8 @@ def get_next_index(start_index, pin_return_num, source_pins):
     else:
         return 0
 
+# If source_pins is empty, return empty array, otherwise, loop through array as many times
+# as needed to fill pins_to_return with 25 pins and then return it.
 def get_new_pins(pins_to_return, source_pins, pin_return_num):
     pin_count = 0
     if len(source_pins) < 1:
