@@ -12,6 +12,10 @@
     "pinterest"
   ],
   "author": "John Mogielnicki",
+  "repository": {
+  "type": "git",
+  "url": "git://github.com/jmogielnicki/pinterestClone.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "babel-core": ">=5.8.23",
